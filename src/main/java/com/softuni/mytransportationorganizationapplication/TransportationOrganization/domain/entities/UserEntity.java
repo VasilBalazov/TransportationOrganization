@@ -2,6 +2,7 @@ package com.softuni.mytransportationorganizationapplication.TransportationOrgani
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,7 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
+    @NotBlank
     @Email
     private String email;
     @Column
@@ -21,8 +23,70 @@ public class UserEntity extends BaseEntity{
     @Column
     private String job;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<RolesEntity> roles;
+    private List<UsersRolesEntity> roles;
     @OneToMany(cascade = CascadeType.ALL)
     private List<RequestEntity> requests;
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public UserEntity setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public UserEntity setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public UserEntity setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public UserEntity setOrganization(String organization) {
+        this.organization = organization;
+        return this;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public UserEntity setJob(String job) {
+        this.job = job;
+        return this;
+    }
+
+    public List<UsersRolesEntity> getRoles() {
+        return roles;
+    }
+
+    public UserEntity setRoles(List<UsersRolesEntity> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    public List<RequestEntity> getRequests() {
+        return requests;
+    }
+
+    public UserEntity setRequests(List<RequestEntity> requests) {
+        this.requests = requests;
+        return this;
+    }
 }
