@@ -10,8 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity{
-    @Column(name = "full_name")
-    private String fullName;
+    @Column
+    private String username;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
@@ -27,12 +27,12 @@ public class UserEntity extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL)
     private List<RequestEntity> requests;
 
-    public String getFullName() {
-        return fullName;
+    public String getUsername() {
+        return username;
     }
 
-    public UserEntity setFullName(String fullName) {
-        this.fullName = fullName;
+    public UserEntity setUsername(String username) {
+        this.username = username;
         return this;
     }
 

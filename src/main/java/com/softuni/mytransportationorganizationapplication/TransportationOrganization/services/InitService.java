@@ -53,7 +53,7 @@ public class InitService {
     }
 
     private void initAdmin(){
-        UserEntity admin = new UserEntity().setFullName("Admin Adminov").
+        UserEntity admin = new UserEntity().setUsername("Admin Adminov").
                 setEmail("admin@test.com")
                 .setJob("admin").
                 setOrganization("administration").
@@ -68,7 +68,7 @@ public class InitService {
 
         UserEntity moderator = new UserEntity().
                 setEmail("moderator@test.com").
-                setFullName("Moderator Moderatorov").
+                setUsername("Moderator Moderatorov").
                 setJob("moderator").
                 setOrganization("moderators").
                 setPassword(passwordEncoder.encode("moderator")).
@@ -82,7 +82,7 @@ public class InitService {
 
         UserEntity user = new UserEntity().
                 setEmail("user@test.com").
-                setFullName("User User").
+                setUsername("User User").
                 setJob("user").
                 setOrganization("users").
                 setPassword(passwordEncoder.encode("user")).
@@ -96,7 +96,7 @@ public class InitService {
 
         UserEntity client = new UserEntity().
                 setEmail("client@test.com").
-                setFullName("Client Client").
+                setUsername("Client Client").
                 setJob("client").
                 setOrganization("clients").
                 setPassword(passwordEncoder.encode("client")).
