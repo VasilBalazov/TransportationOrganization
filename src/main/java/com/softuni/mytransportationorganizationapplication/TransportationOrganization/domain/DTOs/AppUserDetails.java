@@ -6,8 +6,17 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Collection;
 
 public class AppUserDetails extends User {
-
+    private String country;
     private String fullName;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public AppUserDetails setCountry(String country) {
+        this.country = country;
+        return this;
+    }
 
     public AppUserDetails(String username, String password,
                           Collection<? extends GrantedAuthority> authorities) {

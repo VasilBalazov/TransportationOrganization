@@ -22,6 +22,19 @@ public class UserEntity extends BaseEntity{
     private String organization;
     @Column
     private String job;
+
+    @Column
+    private String country;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public UserEntity setCountry(String country) {
+        this.country = country;
+        return this;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UsersRolesEntity> roles;
     @OneToMany(cascade = CascadeType.ALL)
