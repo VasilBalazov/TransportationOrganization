@@ -1,5 +1,4 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,30 +8,26 @@ public class UserRegistrationDTO {
   @NotNull
   @Size(min = 5, max = 20)
   private String username;
-  @Size(min = 3, max = 30)
-  private String organization;
-
-  @Email
-  @NotBlank
-  private String email;
   @NotNull
   @Size(min = 6, max = 20)
   private String password;
+  @Email
+  @NotBlank
+  private String email;
 
-  @Size(min = 5, max = 20)
-  private String job;
+  private String country;
 
+  private String userRole;
 
-
-
-
-  public String getOrganization() {
-    return organization;
+  public UserRegistrationDTO() {
   }
 
-  public UserRegistrationDTO setOrganization(String organization) {
-    this.organization = organization;
-    return this;
+  public UserRegistrationDTO(String username, String password, String email, String country, String userRole) {
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.country = country;
+    this.userRole = userRole;
   }
 
   public String getUsername() {
@@ -41,15 +36,6 @@ public class UserRegistrationDTO {
 
   public UserRegistrationDTO setUsername(String username) {
     this.username = username;
-    return this;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public UserRegistrationDTO setEmail(String email) {
-    this.email = email;
     return this;
   }
 
@@ -62,23 +48,30 @@ public class UserRegistrationDTO {
     return this;
   }
 
-  public String getJob() {
-    return job;
+  public String getEmail() {
+    return email;
   }
 
-  public UserRegistrationDTO setJob(String job) {
-    this.job = job;
+  public UserRegistrationDTO setEmail(String email) {
+    this.email = email;
     return this;
   }
 
-  public UserRegistrationDTO(String userName, String organization, String email, String password, String job) {
-    this.username = userName;
-    this.organization = organization;
-    this.email = email;
-    this.password = password;
-    this.job = job;
+  public String getCountry() {
+    return country;
   }
 
-  public UserRegistrationDTO() {
+  public UserRegistrationDTO setCountry(String country) {
+    this.country = country;
+    return this;
+  }
+
+  public String getUserRole() {
+    return userRole;
+  }
+
+  public UserRegistrationDTO setUserRole(String userRole) {
+    this.userRole = userRole;
+    return this;
   }
 }

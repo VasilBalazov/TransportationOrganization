@@ -31,8 +31,7 @@ public class UserService {
         UserEntity userEntity = new UserEntity().
                 setUsername(registrationDTO.getUsername()).
                 setEmail(registrationDTO.getEmail()).
-                setJob(registrationDTO.getJob()).
-                setOrganization(registrationDTO.getOrganization()).
+                setCountry(registrationDTO.getCountry()).
                 setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
 
         userRepository.save(userEntity);

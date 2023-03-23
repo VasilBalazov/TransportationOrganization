@@ -3,6 +3,7 @@ package com.softuni.mytransportationorganizationapplication.TransportationOrgani
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -10,35 +11,33 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity{
-    @Column
+    @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @NotBlank
     @Email
     private String email;
     @Column
-    private String organization;
-    @Column
-    private String job;
-
-    @Column
     private String country;
-
-    public String getCountry() {
-        return country;
-    }
-
-    public UserEntity setCountry(String country) {
-        this.country = country;
-        return this;
-    }
-
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UsersRolesEntity> roles;
     @OneToMany(cascade = CascadeType.ALL)
     private List<RequestEntity> requests;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(String username, String password, String email,
+                      String country, List<UsersRolesEntity> roles, List<RequestEntity> requests) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.country = country;
+        this.roles = roles;
+        this.requests = requests;
+    }
 
     public String getUsername() {
         return username;
@@ -67,21 +66,12 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public String getOrganization() {
-        return organization;
+    public String getCountry() {
+        return country;
     }
 
-    public UserEntity setOrganization(String organization) {
-        this.organization = organization;
-        return this;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
-    public UserEntity setJob(String job) {
-        this.job = job;
+    public UserEntity setCountry(String country) {
+        this.country = country;
         return this;
     }
 

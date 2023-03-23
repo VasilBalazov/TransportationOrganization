@@ -7,7 +7,13 @@ import java.util.Collection;
 
 public class AppUserDetails extends User {
     private String country;
-    private String fullName;
+
+
+    public AppUserDetails(String username, String password,
+                          Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
+    }
+
 
     public String getCountry() {
         return country;
@@ -18,19 +24,4 @@ public class AppUserDetails extends User {
         return this;
     }
 
-    public AppUserDetails(String username, String password,
-                          Collection<? extends GrantedAuthority> authorities) {
-        super(username, password, authorities);
-    }
-
-
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public AppUserDetails setFullName(String fullName) {
-        this.fullName = fullName;
-        return this;
-    }
 }

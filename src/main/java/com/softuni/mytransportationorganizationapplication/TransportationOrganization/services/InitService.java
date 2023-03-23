@@ -17,15 +17,13 @@ import java.util.List;
 @Service
 public class InitService {
     private final RoleRepository roleRepository;
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+
 
 
     @Autowired
-    public InitService(RoleRepository roleRepository, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public InitService(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+
     }
 
     @PostConstruct
@@ -41,67 +39,6 @@ public class InitService {
             roleRepository.saveAndFlush(client);
         }
     }
-    @PostConstruct
-    @DependsOn("roleSetting")
-    private void initUsers() {
-        if (userRepository.count() == 0) {
-            initAdmin();
-            initModerator();
-            initNormalUser();
-            initClient();
-        }
-    }
 
-    private void initAdmin(){
-        UserEntity admin = new UserEntity().setUsername("Admin Adminov").
-                setEmail("admin@test.com")
-                .setJob("admin").
-                setOrganization("administration").
-                setRoles(roleRepository.findAll()).
-                setPassword(passwordEncoder.encode("administrator"));
-        userRepository.save(admin);
-    }
-    private void initModerator(){
-
-        var moderatorRole = roleRepository.
-                findUserRoleEntityByRole(UserRoleEnum.MODERATOR).orElseThrow();
-
-        UserEntity moderator = new UserEntity().
-                setEmail("moderator@test.com").
-                setUsername("Moderator Moderatorov").
-                setJob("moderator").
-                setOrganization("moderators").
-                setPassword(passwordEncoder.encode("moderator")).
-                setRoles(List.of(moderatorRole));
-        userRepository.save(moderator);
-    }
-    private void initNormalUser(){
-
-        var userRole = roleRepository.
-                findUserRoleEntityByRole(UserRoleEnum.USER).orElseThrow();
-
-        UserEntity user = new UserEntity().
-                setEmail("user@test.com").
-                setUsername("User User").
-                setJob("user").
-                setOrganization("users").
-                setPassword(passwordEncoder.encode("user")).
-                setRoles(List.of(userRole));
-        userRepository.save(user);
-    }
-    private void initClient(){
-
-        var clientRole = roleRepository.
-                findUserRoleEntityByRole(UserRoleEnum.CLIENT).orElseThrow();
-
-        UserEntity client = new UserEntity().
-                setEmail("client@test.com").
-                setUsername("Client Client").
-                setJob("client").
-                setOrganization("clients").
-                setPassword(passwordEncoder.encode("client")).
-                setRoles(List.of(clientRole));
-        userRepository.save(client);
-    }
 
 }
