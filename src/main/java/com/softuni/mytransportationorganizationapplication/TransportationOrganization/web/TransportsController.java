@@ -10,7 +10,7 @@ public class TransportsController {
 
     @GetMapping("/mot")
     private String motPage() {
-        return "mot";
+        return "mot-choose";
     }
 
 
