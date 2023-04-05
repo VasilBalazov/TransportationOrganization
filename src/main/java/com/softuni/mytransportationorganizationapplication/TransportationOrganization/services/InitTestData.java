@@ -38,8 +38,7 @@ public class InitTestData {
 
     private void initAdmin(){
         UserEntity admin = new UserEntity().setUsername("admin").
-                setEmail("admin@test.com")
-                .setCountry("Bulgaria").
+                setEmail("admin@test.com").
                 setRoles(roleRepository.findAll()).
                 setPassword(passwordEncoder.encode("admin"));
         userRepository.save(admin);
@@ -52,7 +51,6 @@ public class InitTestData {
         UserEntity moderator = new UserEntity().
                 setEmail("moderator@test.com").
                 setUsername("moderator").
-                setCountry("Bulgaria").
                 setPassword(passwordEncoder.encode("moderator")).
                 setRoles(List.of(moderatorRole));
         userRepository.save(moderator);
@@ -65,7 +63,6 @@ public class InitTestData {
         UserEntity user = new UserEntity().
                 setEmail("user@test.com").
                 setUsername("user").
-                setCountry("Bulgaria").
                 setPassword(passwordEncoder.encode("user")).
                 setRoles(List.of(userRole));
         userRepository.save(user);
@@ -78,7 +75,6 @@ public class InitTestData {
         UserEntity client = new UserEntity().
                 setEmail("client@test.com").
                 setUsername("client").
-                setCountry("Bulgaria").
                 setPassword(passwordEncoder.encode("client")).
                 setRoles(List.of(clientRole));
         userRepository.save(client);

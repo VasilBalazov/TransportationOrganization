@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class UserEntity extends BaseEntity{
     @Column
     private String country;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<UsersRolesEntity> roles;
+    private List<UsersRolesEntity> roles = new ArrayList<>();;
     @OneToMany(cascade = CascadeType.ALL)
     private List<RequestEntity> requests;
 

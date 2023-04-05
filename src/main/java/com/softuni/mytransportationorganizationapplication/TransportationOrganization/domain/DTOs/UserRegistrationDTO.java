@@ -1,33 +1,38 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs;
+
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.validation.FieldMatch;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.validation.UniqueUserEmail;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.validation.UniqueUserName;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
+@FieldMatch(
+        first = "password",
+        second = "confirmPassword",
+        message = "Passwords do not match."
+)
 public class UserRegistrationDTO {
   @NotNull
   @Size(min = 5, max = 20)
+  @UniqueUserName(message = "Username should be unique")
   private String username;
+  @NotEmpty(message = "User email should be provided.")
+  @Email(message = "User email should be valid.")
+  @UniqueUserEmail(message = "User email should be unique.")
+  private String email;
   @NotNull
   @Size(min = 6, max = 20)
   private String password;
-  @Email
-  @NotBlank
-  private String email;
+  private String confirmPassword;
 
-  private String country;
-
-  private String userRole;
-
-  public UserRegistrationDTO() {
-  }
-
-  public UserRegistrationDTO(String username, String password, String email, String country, String userRole) {
+  public UserRegistrationDTO(String username, String email, String password, String confirmPassword) {
     this.username = username;
-    this.password = password;
     this.email = email;
-    this.country = country;
-    this.userRole = userRole;
+    this.password = password;
+    this.confirmPassword = confirmPassword;
+  }
+  public UserRegistrationDTO() {
   }
 
   public String getUsername() {
@@ -36,15 +41,6 @@ public class UserRegistrationDTO {
 
   public UserRegistrationDTO setUsername(String username) {
     this.username = username;
-    return this;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public UserRegistrationDTO setPassword(String password) {
-    this.password = password;
     return this;
   }
 
@@ -57,21 +53,23 @@ public class UserRegistrationDTO {
     return this;
   }
 
-  public String getCountry() {
-    return country;
+  public String getPassword() {
+    return password;
   }
 
-  public UserRegistrationDTO setCountry(String country) {
-    this.country = country;
+  public UserRegistrationDTO setPassword(String password) {
+    this.password = password;
     return this;
   }
 
-  public String getUserRole() {
-    return userRole;
+  public String getConfirmPassword() {
+    return confirmPassword;
   }
 
-  public UserRegistrationDTO setUserRole(String userRole) {
-    this.userRole = userRole;
+  public UserRegistrationDTO setConfirmPassword(String confirmPassword) {
+    this.confirmPassword = confirmPassword;
     return this;
   }
+
+
 }
