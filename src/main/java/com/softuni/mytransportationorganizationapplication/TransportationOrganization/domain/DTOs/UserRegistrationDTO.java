@@ -26,11 +26,23 @@ public class UserRegistrationDTO {
   private String password;
   private String confirmPassword;
 
-  public UserRegistrationDTO(String username, String email, String password, String confirmPassword) {
+  private String role;
+
+  public String getRole() {
+    return role;
+  }
+
+  public UserRegistrationDTO setRole(String role) {
+    this.role = role;
+    return this;
+  }
+
+  public UserRegistrationDTO(String username, String email, String password, String confirmPassword, String role) {
     this.username = username;
     this.email = email;
     this.password = password;
     this.confirmPassword = confirmPassword;
+    this.role = role;
   }
   public UserRegistrationDTO() {
   }

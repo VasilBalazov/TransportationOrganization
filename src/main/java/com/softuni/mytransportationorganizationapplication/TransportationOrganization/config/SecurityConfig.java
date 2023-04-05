@@ -29,7 +29,7 @@ public class SecurityConfig {
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // the URL-s below are available for all users - logged in and anonymous
                         requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll().
-                         requestMatchers("/pages/client").hasRole(UserRoleEnum.CLIENT.name()).
+                         requestMatchers("/pages/client", "/request").hasRole(UserRoleEnum.CLIENT.name()).
                          requestMatchers("/pages/user").hasRole(UserRoleEnum.USER.name()).
                 // only for moderators
                         requestMatchers("/pages/moderators").hasRole(UserRoleEnum.MODERATOR.name()).
