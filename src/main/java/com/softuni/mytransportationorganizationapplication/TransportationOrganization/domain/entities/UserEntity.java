@@ -24,21 +24,76 @@ public class UserEntity extends BaseEntity{
     private String country;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<UsersRolesEntity> roles = new ArrayList<>();;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<RequestEntity> requests;
 
-    public UserEntity() {
-    }
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<LandTransportEntity> landTransports;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<AirTransportEntity> airTransports;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<RailTransportEntity> railTransports;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<SeaTransportEntity> seaTransports;
 
     public UserEntity(String username, String password, String email,
-                      String country, List<UsersRolesEntity> roles, List<RequestEntity> requests) {
+                      String country, List<UsersRolesEntity> roles,
+                      List<LandTransportEntity> landTransports,
+                      List<AirTransportEntity> airTransports,
+                      List<RailTransportEntity> railTransports,
+                      List<SeaTransportEntity> seaTransports) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.country = country;
         this.roles = roles;
-        this.requests = requests;
+        this.landTransports = landTransports;
+        this.airTransports = airTransports;
+        this.railTransports = railTransports;
+        this.seaTransports = seaTransports;
     }
+
+    public UserEntity() {
+    }
+
+    public List<LandTransportEntity> getLandTransports() {
+        return landTransports;
+    }
+
+    public UserEntity setLandTransports(List<LandTransportEntity> landTransports) {
+        this.landTransports = landTransports;
+        return this;
+    }
+
+    public List<AirTransportEntity> getAirTransports() {
+        return airTransports;
+    }
+
+    public UserEntity setAirTransports(List<AirTransportEntity> airTransports) {
+        this.airTransports = airTransports;
+        return this;
+    }
+
+    public List<RailTransportEntity> getRailTransports() {
+        return railTransports;
+    }
+
+    public UserEntity setRailTransports(List<RailTransportEntity> railTransports) {
+        this.railTransports = railTransports;
+        return this;
+    }
+
+    public List<SeaTransportEntity> getSeaTransports() {
+        return seaTransports;
+    }
+
+    public UserEntity setSeaTransports(List<SeaTransportEntity> seaTransports) {
+        this.seaTransports = seaTransports;
+        return this;
+    }
+
+
 
     public String getUsername() {
         return username;
@@ -85,14 +140,7 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public List<RequestEntity> getRequests() {
-        return requests;
-    }
 
-    public UserEntity setRequests(List<RequestEntity> requests) {
-        this.requests = requests;
-        return this;
-    }
 
 
 }

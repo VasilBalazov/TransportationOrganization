@@ -1,5 +1,6 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities;
 
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.StatusOfRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
@@ -37,7 +38,8 @@ public abstract class BaseTransportEntity extends BaseEntity {
     @Column(nullable = false)
     private String TMR;
 
-
+    @Column(nullable = false)
+    private StatusOfRequest status;
 
     public String getStartPoint() {
         return startPoint;
