@@ -1,14 +1,13 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities;
 
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.StatusOfRequest;
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.StatusOfTransportEnum;
+import jakarta.persistence.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.List;
 
 @MappedSuperclass
 public abstract class BaseTransportEntity extends BaseEntity {
+//    TODO: replace String with date and time where needed
     @Column(nullable = false)
     private String startPoint;
     @Column(nullable = false)
@@ -16,15 +15,15 @@ public abstract class BaseTransportEntity extends BaseEntity {
     @Column(nullable = false)
     private String entryPoint;
     @Column(nullable = false)
-    private LocalDate dateOfEntry;
+    private String dateOfEntry;
     @Column
-    private LocalTime hourOfEntry;
+    private String hourOfEntry;
     @Column(nullable = false)
     private String exitPoint;
     @Column(nullable = false)
-    private LocalDate dateOfExit;
+    private String dateOfExit;
     @Column
-    private LocalTime hourOfExit;
+    private String hourOfExit;
     @Column
     private String cargo;
     @Column
@@ -33,13 +32,44 @@ public abstract class BaseTransportEntity extends BaseEntity {
     private String mission;
     @Column
     private String note;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String faxNumber;
     @Column(nullable = false)
     private String TMR;
 
-    @Column(nullable = false)
-    private StatusOfRequest status;
+    @OneToOne
+    private StatusOfTransport status;
+
+
+
+    public BaseTransportEntity() {
+    }
+    public BaseTransportEntity(String startPoint, String finalDestination, String entryPoint, String dateOfEntry, String hourOfEntry, String exitPoint, String dateOfExit, String hourOfExit, String cargo, String personal, String mission, String note, String faxNumber, String TMR, StatusOfTransport status) {
+        this.startPoint = startPoint;
+        this.finalDestination = finalDestination;
+        this.entryPoint = entryPoint;
+        this.dateOfEntry = dateOfEntry;
+        this.hourOfEntry = hourOfEntry;
+        this.exitPoint = exitPoint;
+        this.dateOfExit = dateOfExit;
+        this.hourOfExit = hourOfExit;
+        this.cargo = cargo;
+        this.personal = personal;
+        this.mission = mission;
+        this.note = note;
+        this.faxNumber = faxNumber;
+        this.TMR = TMR;
+        this.status = status;
+    }
+
+    public StatusOfTransport getStatus() {
+        return status;
+    }
+
+    public BaseTransportEntity setStatus(StatusOfTransport status) {
+        this.status = status;
+        return this;
+    }
 
     public String getStartPoint() {
         return startPoint;
@@ -68,20 +98,20 @@ public abstract class BaseTransportEntity extends BaseEntity {
         return this;
     }
 
-    public LocalDate getDateOfEntry() {
+    public String getDateOfEntry() {
         return dateOfEntry;
     }
 
-    public BaseTransportEntity setDateOfEntry(LocalDate dateOfEntry) {
+    public BaseTransportEntity setDateOfEntry(String dateOfEntry) {
         this.dateOfEntry = dateOfEntry;
         return this;
     }
 
-    public LocalTime getHourOfEntry() {
+    public String getHourOfEntry() {
         return hourOfEntry;
     }
 
-    public BaseTransportEntity setHourOfEntry(LocalTime hourOfEntry) {
+    public BaseTransportEntity setHourOfEntry(String hourOfEntry) {
         this.hourOfEntry = hourOfEntry;
         return this;
     }
@@ -95,20 +125,20 @@ public abstract class BaseTransportEntity extends BaseEntity {
         return this;
     }
 
-    public LocalDate getDateOfExit() {
+    public String getDateOfExit() {
         return dateOfExit;
     }
 
-    public BaseTransportEntity setDateOfExit(LocalDate dateOfExit) {
+    public BaseTransportEntity setDateOfExit(String dateOfExit) {
         this.dateOfExit = dateOfExit;
         return this;
     }
 
-    public LocalTime getHourOfExit() {
+    public String getHourOfExit() {
         return hourOfExit;
     }
 
-    public BaseTransportEntity setHourOfExit(LocalTime hourOfExit) {
+    public BaseTransportEntity setHourOfExit(String hourOfExit) {
         this.hourOfExit = hourOfExit;
         return this;
     }
@@ -166,4 +196,6 @@ public abstract class BaseTransportEntity extends BaseEntity {
         this.TMR = TMR;
         return this;
     }
+
+
 }

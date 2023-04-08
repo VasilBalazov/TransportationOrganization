@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <span th:replace="~{fragments/head::head}"></span>
+</head>
+
+<body>
+
+<div>
+    <nav th:replace="~{fragments/navigation::navigation}"></nav>
+</div>
+<div class="container">
+
+    <h2 class="text-center text-white">Air Request</h2>
+
+    <form th:method="POST"
+          th:action="@{/request/add-land}"
+          th:object="${LandTransportRequestDTO}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+            <label for="startPoint" class="text-white font-weight-bold">Start Point</label>
+            <input id="startPoint" name="startPoint" th:field="*{startPoint}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="StartPoint"/>
+            <p th:if="${#fields.hasErrors('startPoint')}"
+               class="errors alert alert-danger">
+                startPoint
+            </p>
+        </div>
+        <div class="row">
+            <label for="finalDestination" class="text-white font-weight-bold">Final Destination</label>
+            <input id="finalDestination" name="finalDestination" th:field="*{finalDestination}"
+                   th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="finalDestination"/>
+            <p th:if="${#fields.hasErrors('finalDestination')}"
+               class="errors alert alert-danger">
+                finalDestination
+            </p>
+        </div>
+        <div class="row">
+            <label for="hourOfEntry" class="text-white font-weight-bold">Hour Of Entry</label>
+            <input id="hourOfEntry" name="hourOfEntry" th:field="*{hourOfEntry}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="HourOfEntry"/>
+            <p th:if="${#fields.hasErrors('hourOfEntry')}"
+               class="errors alert alert-danger">
+                hourOfEntry
+            </p>
+        </div>
+        <div class="row">
+            <label for="entryPoint" class="text-white font-weight-bold">Entry Point</label>
+            <input id="entryPoint" name="entryPoint" th:field="*{entryPoint}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="EntryPoint"/>
+            <p th:if="${#fields.hasErrors('entryPoint')}"
+               class="errors alert alert-danger">
+                entryPoint
+            </p>
+        </div>
+        <div class="row">
+            <label for="dateOfEntry" class="text-white font-weight-bold">Date Of Entry</label>
+            <input id="dateOfEntry" name="dateOfEntry" th:field="*{dateOfEntry}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="DateOfEntry"/>
+            <p th:if="${#fields.hasErrors('dateOfEntry')}"
+               class="errors alert alert-danger">
+                dateOfEntry
+            </p>
+        </div>
+        <div class="row">
+            <label for="exitPoint" class="text-white font-weight-bold">Exit Point</label>
+            <input id="exitPoint" name="exitPoint" th:field="*{exitPoint}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="ExitPoint"/>
+            <p th:if="${#fields.hasErrors('exitPoint')}"
+               class="errors alert alert-danger">
+                exitPoint
+            </p>
+        </div>
+        <div class="row">
+            <label for="dateOfExit" class="text-white font-weight-bold">Date Of Exit</label>
+            <input id="dateOfExit" name="dateOfExit" th:field="*{dateOfExit}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="DateOfExit"/>
+            <p th:if="${#fields.hasErrors('dateOfExit')}"
+               class="errors alert alert-danger">
+                dateOfExit
+            </p>
+        </div>
+        <div class="row">
+            <label for="hourOfExit" class="text-white font-weight-bold">Hour Of Exit</label>
+            <input id="hourOfExit" name="hourOfExit" th:field="*{hourOfExit}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="HourOfExit"/>
+            <p th:if="${#fields.hasErrors('hourOfExit')}"
+               class="errors alert alert-danger">
+                hourOfExit
+            </p>
+        </div>
+        <div class="row">
+            <label for="cargo" class="text-white font-weight-bold">Cargo</label>
+            <input id="cargo" name="cargo" th:field="*{cargo}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="Cargo"/>
+            <p th:if="${#fields.hasErrors('cargo')}"
+               class="errors alert alert-danger">
+                cargo
+            </p>
+        </div>
+        <div class="row">
+            <label for="personal" class="text-white font-weight-bold">Personal</label>
+            <input id="personal" name="personal" th:field="*{personal}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="Personal"/>
+            <p th:if="${#fields.hasErrors('personal')}"
+               class="errors alert alert-danger">
+                personal
+            </p>
+        </div>
+        <div class="row">
+            <label for="mission" class="text-white font-weight-bold">Mission</label>
+            <input id="mission" name="mission" th:field="*{mission}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="Mission"/>
+            <p th:if="${#fields.hasErrors('mission')}"
+               class="errors alert alert-danger">
+                mission
+            </p>
+        </div>
+        <div class="row">
+            <label for="note" class="text-white font-weight-bold">Note</label>
+            <input id="note" name="note" th:field="*{note}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="Note"/>
+            <p th:if="${#fields.hasErrors('note')}"
+               class="errors alert alert-danger">
+                note
+            </p>
+        </div>
+        <div class="row">
+            <label for="TMR" class="text-white font-weight-bold">TMR</label>
+            <input id="TMR" name="TMR" th:field="*{TMR}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="TMR"/>
+            <p th:if="${#fields.hasErrors('TMR')}"
+               class="errors alert alert-danger">
+                TMR
+            </p>
+        </div>
+        <div class="row">
+            <label for="typeOfVehicle" class="text-white font-weight-bold">Type Of Vehicle</label>
+            <input id="typeOfVehicle" name="typeOfVehicle" th:field="*{typeOfVehicle}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="TypeOfVehicle"/>
+            <p th:if="${#fields.hasErrors('typeOfVehicle')}"
+               class="errors alert alert-danger">
+                typeOfVehicle
+            </p>
+        </div>
+        <div class="row">
+            <label for="licensePlateNumber" class="text-white font-weight-bold">License Plate Number</label>
+            <input id="licensePlateNumber" name="licensePlateNumber" th:field="*{licensePlateNumber}"
+                   th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="LicensePlateNumber"/>
+            <p th:if="${#fields.hasErrors('licensePlateNumber')}"
+               class="errors alert alert-danger">
+                licensePlateNumber
+            </p>
+        </div>
+        <div class="row">
+            <label for="licensePlateNumberTrailer" class="text-white font-weight-bold">License Plate Number
+                Trailer</label>
+            <input id="licensePlateNumberTrailer" name="licensePlateNumberTrailer"
+                   th:field="*{licensePlateNumberTrailer}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="licensePlateNumberTrailer"/>
+            <p th:if="${#fields.hasErrors('licensePlateNumberTrailer')}"
+               class="errors alert alert-danger">
+                licensePlateNumberTrailer
+            </p>
+        </div>
+        <div class="row">
+            <label for="drivers" class="text-white font-weight-bold">Drivers</label>
+            <input id="drivers" name="drivers" th:field="*{drivers}" th:errorclass="is-invalid"
+                   type="text" min="2" max="20"
+                   class="form-control"
+                   placeholder="drivers"/>
+            <p th:if="${#fields.hasErrors('drivers')}"
+               class="errors alert alert-danger">
+                drivers
+            </p>
+        </div>
+
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit Offer"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div>
+    <footer></footer>
+</div>
+
+</body>
+</html>

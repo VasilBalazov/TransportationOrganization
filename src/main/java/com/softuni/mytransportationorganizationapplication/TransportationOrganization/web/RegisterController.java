@@ -45,15 +45,15 @@ public class RegisterController {
     }
     @PostMapping("/register")
     public String registerNewUser(
-            @Valid UserRegistrationDTO registrationDTO,
+            @Valid @ModelAttribute(name = "UserRegistrationDTO") UserRegistrationDTO registrationDTO,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes,
             HttpServletRequest request,
             HttpServletResponse response) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("registrationDTO", registrationDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel",
+            redirectAttributes.addFlashAttribute("UserRegistrationDTO", registrationDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.UserRegistrationDTO",
                     bindingResult);
             return "redirect:/users/register";
         }else {
