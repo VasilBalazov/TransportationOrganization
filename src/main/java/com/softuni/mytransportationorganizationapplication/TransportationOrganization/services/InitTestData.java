@@ -47,24 +47,28 @@ public class InitTestData {
 
         var moderatorRole = roleRepository.
                 findUserRoleEntityByRole(UserRoleEnum.MODERATOR).orElseThrow();
-
+        var userRole = roleRepository.
+                findUserRoleEntityByRole(UserRoleEnum.USER).orElseThrow();
+        var clientRole = roleRepository.
+                findUserRoleEntityByRole(UserRoleEnum.CLIENT).orElseThrow();
         UserEntity moderator = new UserEntity().
                 setEmail("moderator@test.com").
                 setUsername("moderator").
                 setPassword(passwordEncoder.encode("moderator")).
-                setRoles(List.of(moderatorRole));
+                setRoles(List.of(moderatorRole, userRole, clientRole));
         userRepository.save(moderator);
     }
     private void initNormalUser(){
 
         var userRole = roleRepository.
                 findUserRoleEntityByRole(UserRoleEnum.USER).orElseThrow();
-
+        var clientRole = roleRepository.
+                findUserRoleEntityByRole(UserRoleEnum.CLIENT).orElseThrow();
         UserEntity user = new UserEntity().
                 setEmail("user@test.com").
                 setUsername("user").
                 setPassword(passwordEncoder.encode("user")).
-                setRoles(List.of(userRole));
+                setRoles(List.of(userRole, clientRole));
         userRepository.save(user);
     }
     private void initClient(){
