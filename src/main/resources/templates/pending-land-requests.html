@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="~{fragments/head}">
+</head>
+
+<body>
+
+<div>
+    <nav th:replace="~{fragments/navigation}"></nav>
+</div>
+
+<!--<div class="wrapper">-->
+<!--    &lt;!&ndash; Navigation &ndash;&gt;-->
+<!--    <section class="bg-transparent" th:each="r : ${transports}" th:object="${r}">-->
+<!--        <div >-->
+<!--            <h2 th:text="*{}">Your Route</h2>-->
+<!--            <p th:text="*{TMR}">TMR</p>-->
+<!--            <p th:text="*{startPoint}">startPoint</p>-->
+<!--            <p th:text="*{endPoint}">endPoint</p>-->
+
+<!--        </div>-->
+<!--    </section>-->
+<!--</div>-->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+    </tr>
+    <tr th:object="t" th:each="t : ${transports}">
+        <td class="align-middle" th:text="${transports}"></td>
+        <td class="align-middle" th:text="${user.firstName}"></td>
+        <td class="align-middle" th:text="${user.lastName}"></td>
+    </tr>
+</table>
+<!-- Wrapper Ends -->
+</body>
+</html>
