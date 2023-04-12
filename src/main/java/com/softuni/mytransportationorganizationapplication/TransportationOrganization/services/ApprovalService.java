@@ -1,9 +1,8 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.services;
 
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs.LTDetailsViewDTO;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.LandTransportEntity;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.LandTransportRepository;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.StatusRepository;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.TransportEntity;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.transportRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,19 +10,19 @@ import java.util.stream.Collectors;
 
 @Service
 public class ApprovalService {
-    private final LandTransportRepository landTransportRepository;
+    private final transportRepository transportRepository;
 
-    public ApprovalService(LandTransportRepository landTransportRepository) {
-        this.landTransportRepository = landTransportRepository;
+    public ApprovalService(transportRepository transportRepository) {
+        this.transportRepository = transportRepository;
     }
 
 
     public List<LTDetailsViewDTO> getAllUnapproved() {
         return
-                landTransportRepository.findAllByStatus_IdIs("2").stream().map(this::map).collect(Collectors.toList());
+                transportRepository.findAllByStatus_IdIs("2").stream().map(this::map).collect(Collectors.toList());
     }
 
-    private LTDetailsViewDTO map(LandTransportEntity LTEntity) {
+    private LTDetailsViewDTO map(TransportEntity LTEntity) {
         return new LTDetailsViewDTO().
                 setCargo(LTEntity.getCargo()).setDateOfEntry(LTEntity.getDateOfEntry()).
                 setDateOfExit(LTEntity.getDateOfExit()).setExitPoint(LTEntity.getExitPoint()).

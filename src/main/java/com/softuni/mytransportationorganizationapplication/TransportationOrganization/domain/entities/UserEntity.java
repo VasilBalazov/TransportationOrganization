@@ -3,11 +3,9 @@ package com.softuni.mytransportationorganizationapplication.TransportationOrgani
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -26,72 +24,80 @@ public class UserEntity extends BaseEntity{
     private List<UsersRolesEntity> roles = new ArrayList<>();;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<LandTransportEntity> landTransports;
+    private List<TransportEntity> transports = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<AirTransportEntity> airTransports;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<RailTransportEntity> railTransports;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<SeaTransportEntity> seaTransports;
-
-    public UserEntity(String username, String password, String email,
-                      String country, List<UsersRolesEntity> roles,
-                      List<LandTransportEntity> landTransports,
-                      List<AirTransportEntity> airTransports,
-                      List<RailTransportEntity> railTransports,
-                      List<SeaTransportEntity> seaTransports) {
+    public UserEntity(String username, String password, String email, String country, List<UsersRolesEntity> roles, List<TransportEntity> transports) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.country = country;
         this.roles = roles;
-        this.landTransports = landTransports;
-        this.airTransports = airTransports;
-        this.railTransports = railTransports;
-        this.seaTransports = seaTransports;
+        this.transports = transports;
     }
+
+    public List<TransportEntity> getTransports() {
+        return transports;
+    }
+
+    public UserEntity setTransports(List<TransportEntity> transports) {
+        this.transports = transports;
+        return this;
+    }
+//    public UserEntity(String username, String password, String email,
+//                      String country, List<UsersRolesEntity> roles,
+//                      List<LandTransportEntity> landTransports,
+//                      List<AirTransportEntity> airTransports,
+//                      List<RailTransportEntity> railTransports,
+//                      List<SeaTransportEntity> seaTransports) {
+//        this.username = username;
+//        this.password = password;
+//        this.email = email;
+//        this.country = country;
+//        this.roles = roles;
+//        this.landTransports = landTransports;
+//        this.airTransports = airTransports;
+//        this.railTransports = railTransports;
+//        this.seaTransports = seaTransports;
+//    }
 
     public UserEntity() {
     }
 
-    public List<LandTransportEntity> getLandTransports() {
-        return landTransports;
-    }
-
-    public UserEntity setLandTransports(List<LandTransportEntity> landTransports) {
-        this.landTransports = landTransports;
-        return this;
-    }
-
-    public List<AirTransportEntity> getAirTransports() {
-        return airTransports;
-    }
-
-    public UserEntity setAirTransports(List<AirTransportEntity> airTransports) {
-        this.airTransports = airTransports;
-        return this;
-    }
-
-    public List<RailTransportEntity> getRailTransports() {
-        return railTransports;
-    }
-
-    public UserEntity setRailTransports(List<RailTransportEntity> railTransports) {
-        this.railTransports = railTransports;
-        return this;
-    }
-
-    public List<SeaTransportEntity> getSeaTransports() {
-        return seaTransports;
-    }
-
-    public UserEntity setSeaTransports(List<SeaTransportEntity> seaTransports) {
-        this.seaTransports = seaTransports;
-        return this;
-    }
+//    public List<LandTransportEntity> getLandTransports() {
+//        return landTransports;
+//    }
+//
+//    public UserEntity setLandTransports(List<LandTransportEntity> landTransports) {
+//        this.landTransports = landTransports;
+//        return this;
+//    }
+//
+//    public List<AirTransportEntity> getAirTransports() {
+//        return airTransports;
+//    }
+//
+//    public UserEntity setAirTransports(List<AirTransportEntity> airTransports) {
+//        this.airTransports = airTransports;
+//        return this;
+//    }
+//
+//    public List<RailTransportEntity> getRailTransports() {
+//        return railTransports;
+//    }
+//
+//    public UserEntity setRailTransports(List<RailTransportEntity> railTransports) {
+//        this.railTransports = railTransports;
+//        return this;
+//    }
+//
+//    public List<SeaTransportEntity> getSeaTransports() {
+//        return seaTransports;
+//    }
+//
+//    public UserEntity setSeaTransports(List<SeaTransportEntity> seaTransports) {
+//        this.seaTransports = seaTransports;
+//        return this;
+//    }
 
 
 
