@@ -1,7 +1,11 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities;
 
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.MOT;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,8 +15,7 @@ import lombok.*;
 @Entity
 @Table(name = "transports")
 public class Transport extends BaseEntity{
-    @Column(nullable = false)
-    private String type;
+
     @Column(nullable = false)
     private String startPoint;
     @Column(nullable = false)
@@ -68,5 +71,6 @@ public class Transport extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
+    @OneToOne(fetch = FetchType.EAGER)
+    private ModeOfTransportation modesOfTransportation;
 }

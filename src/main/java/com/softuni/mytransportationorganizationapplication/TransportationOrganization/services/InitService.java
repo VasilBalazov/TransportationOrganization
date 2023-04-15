@@ -1,9 +1,12 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.services;
 
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.ModeOfTransportation;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.Status;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.UsersRoles;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.MOT;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.StatusOfTransportEnum;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.UserRoleEnum;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.MOTRepository;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.RoleRepository;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.StatusRepository;
 import jakarta.annotation.PostConstruct;
@@ -14,13 +17,15 @@ import org.springframework.stereotype.Service;
 public class InitService {
     private final RoleRepository roleRepository;
     private final StatusRepository statusRepository;
+    private final MOTRepository motRepository;
 
 
     @Autowired
-    public InitService(RoleRepository roleRepository, StatusRepository statusRepository) {
+    public InitService(RoleRepository roleRepository, StatusRepository statusRepository, MOTRepository motRepository) {
         this.roleRepository = roleRepository;
 
         this.statusRepository = statusRepository;
+        this.motRepository = motRepository;
     }
 
     @PostConstruct
@@ -50,6 +55,20 @@ public class InitService {
             statusRepository.saveAndFlush(onCall);
             statusRepository.saveAndFlush(canceled);
             statusRepository.saveAndFlush(refused);
+        }
+    }
+    @PostConstruct
+    public void MOTSetting(){
+        if (motRepository.count() == 0) {
+            ModeOfTransportation land = new ModeOfTransportation().setModeOfTransportation(MOT.LAND);
+            ModeOfTransportation air = new ModeOfTransportation().setModeOfTransportation(MOT.AIR);
+            ModeOfTransportation rail = new ModeOfTransportation().setModeOfTransportation(MOT.RAIL);
+            ModeOfTransportation sea = new ModeOfTransportation().setModeOfTransportation(MOT.SEA);
+
+            motRepository.saveAndFlush(land);
+            motRepository.saveAndFlush(air);
+            motRepository.saveAndFlush(rail);
+            motRepository.saveAndFlush(sea);
         }
     }
 }

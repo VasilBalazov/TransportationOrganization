@@ -67,6 +67,11 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new ApplicationUserDetailsService(userRepository);
     }
+//    @Primary
+//    @Bean
+//    public UserDetailsService userDetailsService(UserRepository userRepository) {
+//        return new TransporterUserDetailsService(userRepository);
+//    }
     @Bean
     public SecurityContextRepository securityContextRepository() {
         return new DelegatingSecurityContextRepository(

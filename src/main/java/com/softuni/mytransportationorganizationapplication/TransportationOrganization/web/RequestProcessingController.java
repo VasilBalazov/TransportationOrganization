@@ -22,13 +22,13 @@ public class RequestProcessingController {
         return "mot-request-processing";
     }
 
-    @GetMapping("/action/processing-land")
-    private String landTransportToProcess(Model model) {
-        List<LTDetailsViewDTO> allPending = approvalService.getAllUnapproved();
-
-        model.addAttribute("transports", allPending);
-        return "pending-land-requests";
-    }
+//    @GetMapping("/action/processing-land")
+//    private String landTransportToProcess(Model model) {
+//        List<LTDetailsViewDTO> allPending = approvalService.getAllUnapproved();
+//
+//        model.addAttribute("transports", allPending);
+//        return "pending-land-requests";
+//    }
 
 
 

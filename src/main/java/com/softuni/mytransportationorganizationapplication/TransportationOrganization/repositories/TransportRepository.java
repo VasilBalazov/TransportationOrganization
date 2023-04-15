@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface transportRepository extends JpaRepository<Transport, Long> {
+public interface TransportRepository extends JpaRepository<Transport, Long> {
 //    @Query("SELECT t FROM land_transports as t " +
 //            "WHERE t.status_id = 2")
 //    LandTransportEntity findAllByIdWithStatusIsPending ();

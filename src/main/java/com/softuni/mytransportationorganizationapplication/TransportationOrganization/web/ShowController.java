@@ -17,19 +17,19 @@ public class ShowController {
         this.allTransportsService = allTransportsService;
     }
 
-    @GetMapping("/all")
-    private String getAllTransports(Model model) {
-        List<LTDetailsViewDTO> landTransports = allTransportsService.getAllLandTransports();
-//        List<ATDetailsViewDTO> airTransports = allTransportsService.getAllAirTransports();
-//        List<RTDetailsViewDTO> railTransports = allTransportsService.getAllRailTransports();
-//        List<STDetailsViewDTO> seaTransports = allTransportsService.getAllSeaTransports();
-
-        model.addAttribute("lTransports", landTransports);
-//        model.addAttribute("aTransports", airTransports);
-//        model.addAttribute("rTransports", railTransports);
-//        model.addAttribute("sTransports", seaTransports);
-        return "all-transports";
-    }
+//    @GetMapping("/all")
+//    private String getAllTransports(Model model) {
+//        List<LTDetailsViewDTO> landTransports = allTransportsService.getAllLandTransports();
+////        List<ATDetailsViewDTO> airTransports = allTransportsService.getAllAirTransports();
+////        List<RTDetailsViewDTO> railTransports = allTransportsService.getAllRailTransports();
+////        List<STDetailsViewDTO> seaTransports = allTransportsService.getAllSeaTransports();
+//
+//        model.addAttribute("lTransports", landTransports);
+////        model.addAttribute("aTransports", airTransports);
+////        model.addAttribute("rTransports", railTransports);
+////        model.addAttribute("sTransports", seaTransports);
+//        return "all-transports";
+//    }
 
 
 }
