@@ -1,7 +1,7 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.services;
 
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs.UserRegistrationDTO;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.UserEntity;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.User;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.UserRoleEnum;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.RoleRepository;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.UserRepository;
@@ -39,13 +39,13 @@ public class UserService {
         var role = roleRepository.
                 findUserRoleEntityByRole(UserRoleEnum.valueOf(registrationDTO.getRole())).orElseThrow();
 
-        UserEntity userEntity = new UserEntity().
-                setUsername(registrationDTO.getUsername()).
-                setEmail(registrationDTO.getEmail()).
-                setPassword(passwordEncoder.encode(registrationDTO.getPassword()))
-                .setRoles(List.of(role));
+        User user = new User();
+        user.setUsername(registrationDTO.getUsername());
+        user.setEmail(registrationDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
+        user.setRoles(List.of(role));
 
-        userRepository.save(userEntity);
+        userRepository.save(user);
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(registrationDTO.getUsername());
 

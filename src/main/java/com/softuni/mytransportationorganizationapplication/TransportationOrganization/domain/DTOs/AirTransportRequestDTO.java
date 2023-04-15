@@ -1,6 +1,5 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs;
 
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.StatusOfTransport;
 import jakarta.validation.constraints.NotNull;
 
 public class AirTransportRequestDTO {

@@ -1,22 +1,26 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities;
 
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.StatusOfTransportEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 @Entity
 @Table(name = "status")
-public class StatusOfTransport extends BaseEntity{
+public class Status extends BaseEntity{
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private StatusOfTransportEnum status;
 
     public StatusOfTransportEnum getStatus() {
         return status;
     }
 
-    public StatusOfTransport setStatus(StatusOfTransportEnum status) {
+    public Status setStatus(StatusOfTransportEnum status) {
         this.status = status;
         return this;
     }

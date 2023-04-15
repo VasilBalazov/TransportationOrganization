@@ -41,13 +41,13 @@ public class SecurityConfig {
                 anyRequest().authenticated().
                 and().
                 // configure login with HTML form
-                        formLogin().
-                loginPage("/users/login").
-                // the names of the user name, password input fields in the custom login form
-                        usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
-                        passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
+                    formLogin().
+                    loginPage("/users/login").
+                // the names of the username, password input fields in the custom login form
+                    usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
+                    passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                 // where do we go after login
-                        defaultSuccessUrl("/").//use true argument if you always want to go there, otherwise go to previous page
+                    defaultSuccessUrl("/").//use true argument if you always want to go there, otherwise go to previous page
                 failureForwardUrl("/users/login-error").
                 and().logout().//configure logout
                 logoutUrl("/users/logout").
@@ -77,14 +77,14 @@ public class SecurityConfig {
         );
     }
 
-    public String loggedUsername(){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            return ((UserDetails)principal).getUsername();
-        } else {
-            return  principal.toString();
-        }
-    }
+//    public String loggedUsername(){
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        if (principal instanceof UserDetails) {
+//            return ((UserDetails)principal).getUsername();
+//        } else {
+//            return  principal.toString();
+//        }
+//    }
 
 }

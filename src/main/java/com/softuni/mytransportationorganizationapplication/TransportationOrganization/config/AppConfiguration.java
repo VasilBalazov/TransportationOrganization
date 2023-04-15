@@ -12,23 +12,23 @@ import java.time.format.DateTimeFormatter;
 @Configuration
 public class AppConfiguration {
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
-
 //    @Bean
 //    public ModelMapper modelMapper() {
-//        ModelMapper modelMapper = new ModelMapper();
-//
-//        modelMapper.addConverter(new Converter<String, LocalDateTime>() {
-//            @Override
-//            public LocalDateTime convert(MappingContext<String, LocalDateTime> mappingContext) {
-//                LocalDateTime parse = LocalDateTime.parse(mappingContext.getSource(),
-//                        DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-//                return parse;
-//            }
-//        });
-//        return modelMapper;
+//        return new ModelMapper();
 //    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+
+        modelMapper.addConverter(new Converter<String, LocalDateTime>() {
+            @Override
+            public LocalDateTime convert(MappingContext<String, LocalDateTime> mappingContext) {
+                LocalDateTime parse = LocalDateTime.parse(mappingContext.getSource(),
+                        DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                return parse;
+            }
+        });
+        return modelMapper;
+    }
 }

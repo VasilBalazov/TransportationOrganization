@@ -7,22 +7,15 @@ import java.util.Collection;
 
 public class AppUserDetails extends User {
     private String country;
-    private Long id;
 
-    public AppUserDetails(String username, String password, Long id,
+
+    public AppUserDetails(String username, String password,
                           Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
-        this.id = id;
+
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public AppUserDetails setId(Long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getCountry() {
         return country;

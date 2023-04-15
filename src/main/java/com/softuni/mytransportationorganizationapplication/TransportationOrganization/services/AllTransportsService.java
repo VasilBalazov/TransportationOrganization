@@ -1,7 +1,7 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.services;
 
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs.LTDetailsViewDTO;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.TransportEntity;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.Transport;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.transportRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class AllTransportsService {
         return transportRepository.findAll().stream().map(this::lMap).collect(Collectors.toList());
     }
 
-    private LTDetailsViewDTO lMap(TransportEntity LTEntity) {
+    private LTDetailsViewDTO lMap(Transport LTEntity) {
         return new LTDetailsViewDTO().
                 setCargo(LTEntity.getCargo()).setDateOfEntry(LTEntity.getDateOfEntry()).
                 setDateOfExit(LTEntity.getDateOfExit()).setExitPoint(LTEntity.getExitPoint()).

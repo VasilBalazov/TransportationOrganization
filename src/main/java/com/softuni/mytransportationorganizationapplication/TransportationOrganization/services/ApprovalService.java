@@ -1,7 +1,7 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.services;
 
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs.LTDetailsViewDTO;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.TransportEntity;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.Transport;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.transportRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class ApprovalService {
                 transportRepository.findAllByStatus_IdIs("2").stream().map(this::map).collect(Collectors.toList());
     }
 
-    private LTDetailsViewDTO map(TransportEntity LTEntity) {
+    private LTDetailsViewDTO map(Transport LTEntity) {
         return new LTDetailsViewDTO().
                 setCargo(LTEntity.getCargo()).setDateOfEntry(LTEntity.getDateOfEntry()).
                 setDateOfExit(LTEntity.getDateOfExit()).setExitPoint(LTEntity.getExitPoint()).

@@ -1,6 +1,6 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.services;
 
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.UserEntity;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.User;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.UserRoleEnum;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.RoleRepository;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.UserRepository;
@@ -37,10 +37,11 @@ public class InitTestData {
     }
 
     private void initAdmin(){
-        UserEntity admin = new UserEntity().setUsername("admin").
-                setEmail("admin@test.com").
-                setRoles(roleRepository.findAll()).
-                setPassword(passwordEncoder.encode("admin"));
+        User admin = new User();
+        admin.setEmail("admin@test.com");
+        admin.setUsername("admin");
+        admin.setRoles(roleRepository.findAll());
+        admin.setPassword(passwordEncoder.encode("admin"));
         userRepository.save(admin);
     }
     private void initModerator(){
@@ -51,11 +52,12 @@ public class InitTestData {
                 findUserRoleEntityByRole(UserRoleEnum.USER).orElseThrow();
         var clientRole = roleRepository.
                 findUserRoleEntityByRole(UserRoleEnum.CLIENT).orElseThrow();
-        UserEntity moderator = new UserEntity().
-                setEmail("moderator@test.com").
-                setUsername("moderator").
-                setPassword(passwordEncoder.encode("moderator")).
-                setRoles(List.of(moderatorRole, userRole, clientRole));
+        User moderator = new User();
+        moderator.setEmail("moderator@test.com");
+        moderator.setUsername("moderator");
+        moderator.setEmail("moderator@test.com");
+        moderator.setPassword(passwordEncoder.encode("moderator"));
+        moderator.setRoles(List.of(moderatorRole, userRole, clientRole));
         userRepository.save(moderator);
     }
     private void initNormalUser(){
@@ -64,11 +66,11 @@ public class InitTestData {
                 findUserRoleEntityByRole(UserRoleEnum.USER).orElseThrow();
         var clientRole = roleRepository.
                 findUserRoleEntityByRole(UserRoleEnum.CLIENT).orElseThrow();
-        UserEntity user = new UserEntity().
-                setEmail("user@test.com").
-                setUsername("user").
-                setPassword(passwordEncoder.encode("user")).
-                setRoles(List.of(userRole, clientRole));
+        User user = new User();
+        user.setEmail("user@test.com");
+        user.setUsername("user");
+        user.setPassword(passwordEncoder.encode("user"));
+        user.setRoles(List.of(userRole, clientRole));
         userRepository.save(user);
     }
     private void initClient(){
@@ -76,11 +78,11 @@ public class InitTestData {
         var clientRole = roleRepository.
                 findUserRoleEntityByRole(UserRoleEnum.CLIENT).orElseThrow();
 
-        UserEntity client = new UserEntity().
-                setEmail("client@test.com").
-                setUsername("client").
-                setPassword(passwordEncoder.encode("client")).
-                setRoles(List.of(clientRole));
+        User client = new User();
+        client.setEmail("client@test.com");
+        client.setUsername("client");
+        client.setPassword(passwordEncoder.encode("client"));
+        client.setRoles(List.of(clientRole));
         userRepository.save(client);
     }
 }

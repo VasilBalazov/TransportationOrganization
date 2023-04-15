@@ -1,8 +1,8 @@
 package com.softuni.mytransportationorganizationapplication.TransportationOrganization.services;
 
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.DTOs.AppUserDetails;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.UsersRolesEntity;
-import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.UserEntity;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.UsersRoles;
+import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.entities.User;
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,24 +30,23 @@ public class ApplicationUserDetailsService implements UserDetailsService {
                         orElseThrow(() -> new UsernameNotFoundException("User with name " + username + " not found!"));
     }
 
-    private UserDetails map(UserEntity userEntity) {
+    private UserDetails map(User user) {
         return new AppUserDetails(
-                userEntity.getUsername(),
-                userEntity.getPassword(),
-                userEntity.getId(),
-                extractAuthorities(userEntity)
+                user.getUsername(),
+                user.getPassword(),
+                extractAuthorities(user)
         );
     }
 
-    private List<GrantedAuthority> extractAuthorities(UserEntity userEntity) {
-        return userEntity.
+    private List<GrantedAuthority> extractAuthorities(User user) {
+        return user.
                 getRoles().
                 stream().
                 map(this::mapRole).
                 toList();
     }
 
-    private GrantedAuthority mapRole(UsersRolesEntity userRoleEntity) {
+    private GrantedAuthority mapRole(UsersRoles userRoleEntity) {
         return new SimpleGrantedAuthority("ROLE_" + userRoleEntity.getRole().name());
     }
 

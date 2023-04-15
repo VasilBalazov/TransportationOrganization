@@ -2,10 +2,16 @@ package com.softuni.mytransportationorganizationapplication.TransportationOrgani
 
 import com.softuni.mytransportationorganizationapplication.TransportationOrganization.domain.enums.UserRoleEnum;
 import jakarta.persistence.*;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 @Entity
 @Table(name = "roles")
-public class UsersRolesEntity extends BaseEntity {
+public class UsersRoles extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private UserRoleEnum role;
 
@@ -14,7 +20,7 @@ public class UsersRolesEntity extends BaseEntity {
         return role;
     }
 
-    public UsersRolesEntity setRole(UserRoleEnum role) {
+    public UsersRoles setRole(UserRoleEnum role) {
         this.role = role;
         return this;
     }
