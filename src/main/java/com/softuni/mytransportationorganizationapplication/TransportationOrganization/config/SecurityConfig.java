@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,8 +29,8 @@ public class SecurityConfig {
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // the URL-s below are available for all users - logged in and anonymous
                         requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll().
-                         requestMatchers("/pages/user", "/request", "action").hasRole(UserRoleEnum.CLIENT.name()).
-                         requestMatchers("/pages/user", "/request", "action").hasRole(UserRoleEnum.USER.name()).
+                requestMatchers("/pages/user", "/request", "action").hasRole(UserRoleEnum.CLIENT.name()).
+                requestMatchers("/pages/user", "/request", "action").hasRole(UserRoleEnum.USER.name()).
                 // only for moderators
                         requestMatchers("/pages/moderators","/pages/user", "/request", "action").hasRole(UserRoleEnum.MODERATOR.name()).
                 // only for admins
@@ -41,13 +39,13 @@ public class SecurityConfig {
                 anyRequest().authenticated().
                 and().
                 // configure login with HTML form
-                    formLogin().
-                    loginPage("/users/login").
+                        formLogin().
+                loginPage("/users/login").
                 // the names of the username, password input fields in the custom login form
-                    usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
-                    passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
+                        usernameParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY).
+                passwordParameter(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                 // where do we go after login
-                    defaultSuccessUrl("/").//use true argument if you always want to go there, otherwise go to previous page
+                        defaultSuccessUrl("/", true). //TODO: find out why is this redirecting me to error page
                 failureForwardUrl("/users/login-error").
                 and().logout().//configure logout
                 logoutUrl("/users/logout").
@@ -76,15 +74,4 @@ public class SecurityConfig {
                 new HttpSessionSecurityContextRepository()
         );
     }
-
-//    public String loggedUsername(){
-//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        if (principal instanceof UserDetails) {
-//            return ((UserDetails)principal).getUsername();
-//        } else {
-//            return  principal.toString();
-//        }
-//    }
-
 }

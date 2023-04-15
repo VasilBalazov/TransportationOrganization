@@ -26,7 +26,7 @@ public class User extends BaseEntity{
     private String email;
     @Column
     private String country;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UsersRoles> roles = new ArrayList<>();;
     @OneToMany(mappedBy = "user")
     private List<Transport> transports = new ArrayList<>();

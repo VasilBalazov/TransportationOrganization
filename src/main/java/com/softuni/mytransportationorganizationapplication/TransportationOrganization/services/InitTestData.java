@@ -22,6 +22,7 @@ public class InitTestData {
     public InitTestData(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+
         this.roleRepository = roleRepository;
     }
 
